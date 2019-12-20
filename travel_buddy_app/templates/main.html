@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Rochester&display=swap" rel="stylesheet">
+    <style>
+        .jumbotron{
+            background-color: lightskyblue;
+            color: white;
+        }
+        ul{
+            list-style-type: circle;
+        }
+    </style>
+    {% load static %}
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-7 col-sm-12">
+        <p></p>
+        <h1 style="font-family: 'Rochester', cursive; font-weight: 700;">HangOut!</h1>
+        </div>
+
+        <div class="col-md-5 col-sm-12" style="padding-top: 2%;">
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <input type="text" name="user_name" id="" placeholder="User Name">
+
+            <input type="password" name="password" id="" placeholder="Password">
+            <input style="background-color: none;" class='btn btn-primary' type="submit" value="Login">
+        </form>
+        </div>
+        </div>
+        <div class="jumbotron">
+            {% if messages %}   
+                    {% for message in messages %}    
+                        <P {% if message.tags %} style ='color: crimson;' class="{{ message.tags }}"{% endif %}>* {{ message }}</P>    
+                    {% endfor %}
+                {% endif %}
+            <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-6">
+                <br>
+                <p style="font-size: 24px; letter-spacing: 2px;"><img  style="width: 40px;" alt="create.png" src="https://cdn4.iconfinder.com/data/icons/finance-banking-2/32/edit-512.png ">        Create a Hangout Event</p>
+                <ul style="margin-left: 10%; margin-top: -3%;">
+                    <li>Location & Time</li>
+                    <li>Hangout Info</li>
+                </ul>
+                <br>
+                <br>
+                <p style="font-size: 24px; letter-spacing: 2px"><img  style="width: 43px;" alt="create.png" src="https://pngimage.net/wp-content/uploads/2018/06/invite-png-3.png">        Invite Your Friends</p>
+                <ul style="margin-left: 10%; margin-top: -3%;">
+                    <li>Plan out the Details</li>
+                    <li>Find out who's Going</li>
+                    <li>See what others think</li>
+                </ul>
+                <br>
+                <br>
+                <p style="font-size: 24px; letter-spacing: 2px"><img  style="width: 45px;" alt="create.png" src="https://cdn4.iconfinder.com/data/icons/travel-gang/512/Travel_7-512.png">        Get Together!</p>
+                <ul style="margin-left: 10%; margin-top: -3%;">
+                    <li>Meet-up & Make Memories</li>
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <h1>Sign Up</h1>
+                <h5>It's quick and easy.</h5>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <p class="name">Name</p>
+                    <input style="border-radius: 5px;" type="text" name="name" id="" placeholder="Name">
+<p></p>
+
+                    <p class="user_name">User Name</p>
+                    <input style="border-radius: 5px;" type="text" name="user_name" id="" placeholder="User Name">
+<p></p>
+                    <p class="password">Password</p>
+                    <input style="border-radius: 5px;" type="password" name="password" id="" placeholder="Password">
+<p></p>
+                    <p class="confirm_password">Confirm Password</p>
+                    <input style="border-radius: 5px;" type="password" name="confirm_password" id="" placeholder="Confirm Password">
+                    <p></p>
+                    <input class='btn btn-primary' type="submit" value="Register">
+                </form>
+    </div>            
+    </div>
+    </div>
+    </div>
+  
+</body>
+</html>

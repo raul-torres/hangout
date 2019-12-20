@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+    <style>
+
+            .btn{
+                background-color: #0C2D48;
+            }
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            tr:first-child{
+                background-color: rgb(194, 194, 194);
+            }
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-10">
+                    <a href="/past_hangouts" style="font-family: 'Oswald', sans-serif; font-size: 17px;" class="">Past Hangouts  <img  style="width: 22px;" alt="create.png" src="https://www.netclipart.com/pp/m/104-1044961_calendar-icon-png-date-events-icon-white-png.png">  </a>
+            </div>
+            <div class="col-md-2">
+                <a href="/logout" style="font-family: 'Oswald', sans-serif; font-size: 17px;" class="">Log Out <img  style="width: 22px;" alt="create.png" src="https://www.vippng.com/png/detail/0-2967_png-file-svg-logout-logo-png.png">  </a>
+            </div>
+        </div>
+        <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-10 col-sm-12">
+            <h1>Hello {{LIU.name}}!</h1>
+            </div>
+            <div class="col-md-2 col-sm-12">
+            </div>
+        </div>
+       <br>
+        <div class="your_trips">
+            <h3>Your Scheduled Hangouts</h3>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>Location</th>
+                    <th>Hangout Start Time</th>
+                    <th>Hangout End Time</th>
+                    <th>Plan</th>
+                </tr>
+                {% for x in YT.distinct %}
+                <tr>
+                    <td><a href="/destination/{{x.id}}">{{x.destination}}</a></td>
+                    <td>{{x.travel_date_from}}</td>
+                    <td>{{x.travel_date_to}}</td>
+                    <td>{{x.desc}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="others_trips">
+                <br>
+                <br>
+                <h3>Other Users Hangout Plans</h3>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Hangout Start Date</th>
+                        <th>Hangout End Date</th>
+                        <th>Do You Want to Join?</th>
+                    </tr>
+                    {% for y in OT %}
+                    <tr>
+                        <td>{{y.planned_by.name}}</td>
+                        <td><a href="/destination/{{y.id}}">{{y.destination}}</a></td>
+                        <td>{{y.travel_date_from}}</td>
+                        <td>{{y.travel_date_to}}</td>
+                        <td><a href="/join/{{y.id}}">Join</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br>
+            </div>
+         <div class="row"> 
+             <div class="col-md-10 col-sm-12"></div>
+             <div class="col-md-2 col-sm-12">
+            <a href="/add" style="font-family: 'Oswald', sans-serif; font-size: 20px;" class="pull-right" style="font-size: 19px;">Create Hangout   <img  style="width: 22px;" alt="create.png" src="https://cdn4.iconfinder.com/data/icons/finance-banking-2/32/edit-512.png ">   </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</body>
+</html>
